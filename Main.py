@@ -12,6 +12,7 @@ try:
     from re import findall
     from urllib.request import urlopen
     from time import sleep
+    import ssl
 
 #If it is unable to use any
 except ImportError: 
@@ -283,7 +284,8 @@ def getvidresult(query:str, qarray:list):
         searchq = tmpstr
         print(searchq)
     print(f" SEARCH QUERY = {searchq}")
-    html = urlopen(f"https://www.youtube.com/results?search_query={searchq}")
+    contextssl = ssl._create_unverified_context()
+    html = urlopen(f"https://www.youtube.com/results?search_query={searchq}",context=contextssl)
     print(" Extracting videos. May take a while...")
 
     video_id = findall(r"watch\?v=(\S{11})", html.read().decode())
@@ -477,6 +479,8 @@ def printres(titles:list,urls:list):
     #raise("not implemented", 35)
         
 # Main Code *
+
+
 while True:
     vidtog, viddisp, autores, autoresdisp = intro(vidtog, viddisp, autores, autoresdisp)
 
