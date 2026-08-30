@@ -411,8 +411,8 @@ def tagproc(tgs,tkey):
         for i in tkey:
             if "lyrics" in i:
                 tkey.remove(i)
-        else:
-            tkey = sftgs[:4]
+            else:
+                tkey = sftgs[:4]
     cmbtkey = ""
     for i in tkey:
         if " " in i[0]:
@@ -477,31 +477,6 @@ def printres(titles:list,urls:list):
     #raise("not implemented", 35)
         
 # Main Code *
-
-# Test ytdlp
-print("Initiating YT-DLP test ... \n \n \n")    
-yt_opt = {
-    'extract_flat': True,
-    'skip_download': True,
-}
-
-with yt_dlp.YoutubeDL(yt_opt) as ytdl:
-    try:
-        ytdl.extract_info(tstlink,download=False)
-    except yt_dlp.utils.DownloadError:
-        print("YT-DLP Download Error. Exiting now")
-        exit(57)
-
-    except Exception as e:
-        print(f"Error occurred: {e}")
-        exit(57)
-
-        # IDK what errors this can fling so...
-    finally:
-        tmpplaylist = ytdl.extract_info(tstlink,download=False)
-
-
-
 while True:
     vidtog, viddisp, autores, autoresdisp = intro(vidtog, viddisp, autores, autoresdisp)
 
